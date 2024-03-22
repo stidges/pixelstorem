@@ -4,7 +4,16 @@
   "description": "Converts pixel measurements into rems or ems. Works with the same pixels to rem or pixels to em syntax as Bourbon, so no rewrite of CSS source code is required.",
   "main": "index.js",
   "scripts": {
-    "test": "pixelstorem"
+    "test": "node --test index.test.js"
+  },
+  "engine": {
+    "node": ">=18.0.0"
+  },
+  "peerDependencies": {
+    "postcss": "^8.0.0"
+  },
+  "devDependencies": {
+    "postcss": "^8.0.0"
   },
   "keywords": [
     "pixels",
