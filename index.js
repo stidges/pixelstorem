@@ -18,9 +18,9 @@ module.exports = (options = {}) => {
                     const regExType = new RegExp(/(convert-r?em|px)/, 'ig');
                     const unit = regExType.exec(el)[0].toString().replace(/^convert-/, '');
                     const measureType = options.unit ? options.unit : unit !== 'px' ? unit : 'rem';
-                    return convertedVal = regExVal.exec(el) / base + measureType;
+                    return regExVal.exec(el) / base + measureType;
                 });
-            }
+            };
 
             const replaceItem = (item, convertedValues, matches) => {
                 let revisedParam = item;
@@ -28,14 +28,14 @@ module.exports = (options = {}) => {
                     revisedParam = revisedParam.replace(matches[i], el);
                 });
                 return revisedParam
-            }
+            };
 
             css.walkRules((rule) => {
                 const ruleParent = rule.parent;
 
                 if (ruleParent.type === "atrule" && ruleParent.name === "media" && mediaQueries) {
                     const matches = findMatches(ruleParent.params) || false;
-                    const convertedVal = matches ? convertedVal = convertValues(matches) : false;
+                    const convertedVal = matches ? convertValues(matches) : false;
 
                     if (convertedVal) {
                         rule.parent.params = replaceItem(rule.parent.params, convertedVal, matches);
